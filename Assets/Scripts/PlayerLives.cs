@@ -21,7 +21,24 @@ public class PlayerLives : MonoBehaviour
         {
             Destroy(collision.collider.gameObject);
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            lives -= 1;
+            decreaseLives(1);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "EnemyProjectile")
+        {
+            Destroy(collision.gameObject);
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            decreaseLives(1);
+        }
+    }
+    
+    void decreaseLives(int amount)
+    {
+            lives -= amount;
+
             Debug.Log(lives);
 
             for (int i = 0; i < livesUI.Length; i++)
@@ -29,16 +46,16 @@ public class PlayerLives : MonoBehaviour
                 if (i < lives)
                 {
                     livesUI[i].enabled = true;
-                } else
+                }
+                else
                 {
                     livesUI[i].enabled = false;
                 }
             }
 
-            if (lives <= 0)
+            if (lives < 0)
             {
                 Destroy(gameObject);
             }
-        }
     }
 }
