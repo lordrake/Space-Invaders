@@ -38,29 +38,34 @@ public class PlayerLives : MonoBehaviour
             decreaseLives(1);
         }
     }
-    
+
     void decreaseLives(int amount)
     {
-            lives -= amount;
+        lives -= amount;
 
-            for (int i = 0; i < livesUI.Length; i++)
+        for (int i = 0; i < livesUI.Length; i++)
+        {
+            if (i < lives)
             {
-                if (i < lives)
-                {
-                    livesUI[i].enabled = true;
-                }
-                else
-                {
-                    livesUI[i].enabled = false;
-                }
+                livesUI[i].enabled = true;
             }
+            else
+            {
+                livesUI[i].enabled = false;
+            }
+        }
 
-            if (lives <= 0)
-            {
-                Destroy(gameObject);
-                Time.timeScale = 0;
-                pointManager.HighScoreUpdate();
-                gameOverPanel.SetActive(true);
-            }
+        if (lives <= 0)
+        {
+            ShowGameOver();
+        }
+    }
+    
+    public void ShowGameOver()
+    {
+        Destroy(gameObject);
+        Time.timeScale = 0;
+        pointManager.HighScoreUpdate();
+        gameOverPanel.SetActive(true);
     }
 }

@@ -4,12 +4,15 @@ public class ShipMovement : MonoBehaviour
 {
     public float moveSpeed;
     public float yOffset = 1;
+    public PlayerLives playerLives;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        playerLives = GameObject.Find("PlayerShip").GetComponent<PlayerLives>();
+        Debug.Log(playerLives);
+
     }
 
     // Update is called once per frame
@@ -25,6 +28,11 @@ public class ShipMovement : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y - yOffset, transform.position.z);
             moveSpeed = moveSpeed * -1;
+        }
+
+        if (collision.gameObject.tag == "BoundaryBottom")
+        {
+            playerLives.ShowGameOver();
         }
     }
 }
