@@ -469,6 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   moveSpeed: 0.5
   yOffset: 1
+  playerLives: {fileID: 0}
 --- !u!4 &183118941
 Transform:
   m_ObjectHideFlags: 0
@@ -2440,8 +2441,8 @@ GameObject:
   - component: {fileID: 1045080229}
   - component: {fileID: 1045080228}
   m_Layer: 0
-  m_Name: Player Ship
-  m_TagString: Untagged
+  m_Name: PlayerShip
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3258,7 +3259,7 @@ GameObject:
   - component: {fileID: 1315962844}
   m_Layer: 0
   m_Name: Boundary Bottom
-  m_TagString: Boundary
+  m_TagString: BoundaryBottom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
