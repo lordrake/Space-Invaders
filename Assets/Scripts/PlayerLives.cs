@@ -5,6 +5,10 @@ public class PlayerLives : MonoBehaviour
     public int lives = 3;
     public Image[] livesUI;
     public GameObject explosionPrefab;
+    public GameObject gameOverPanel;
+
+    public PointManager pointManager;
+
     void Start()
     {
 
@@ -39,8 +43,6 @@ public class PlayerLives : MonoBehaviour
     {
             lives -= amount;
 
-            Debug.Log(lives);
-
             for (int i = 0; i < livesUI.Length; i++)
             {
                 if (i < lives)
@@ -53,9 +55,12 @@ public class PlayerLives : MonoBehaviour
                 }
             }
 
-            if (lives < 0)
+            if (lives <= 0)
             {
                 Destroy(gameObject);
+                Time.timeScale = 0;
+                pointManager.HighScoreUpdate();
+                gameOverPanel.SetActive(true);
             }
     }
 }
